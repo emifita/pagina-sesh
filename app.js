@@ -1,5 +1,5 @@
 const searchButton = document.getElementById("searchButton") 
-import SearchMusic from "./SearchMusic.js";
+import SearchMusic from "./modules/SearchMusic.js";
 
 searchButton.addEventListener('click', (ev)=>{
 

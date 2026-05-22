@@ -1,9 +1,12 @@
 import PlayVideo from './PlayVideo.js'
 
+// 
 export default async function SearchMusic() {
     
 
-    const apiKey = `AIzaSyCaVL0JS_log1-Anr7vQ7qTp5quzJnNDmM`;
+    const apiKey = prompt("Digite sua API KEY");
+
+
     let musica = document.getElementById("musicInput").value;
 
     const url =
@@ -13,7 +16,6 @@ export default async function SearchMusic() {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data)
 
         const videoId = data.items[0].id.videoId;
 
