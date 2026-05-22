@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("img/bones-background.jpg");
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    margin-top: 5px;
+    padding: 2px;
+}
+
+input{
+    color:black;
+    
+}
+
+iframe{
+    border-radius: 20px;
+}
