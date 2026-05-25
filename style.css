@@ -28,11 +28,18 @@ a{
     color: black;
     margin-top: 5px;
     padding: 2px;
+    border-radius: 3px;
 }
 
 input{
     color:black;
-    
+    border: none;
+    outline: none;
+    appearance: none;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+
 }
 
 iframe{

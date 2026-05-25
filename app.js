@@ -1,10 +1,12 @@
 const searchButton = document.getElementById("searchButton") 
-import SearchMusic from "./modules/SearchMusic.js";
+import searchMusic from "./modules/searchMusic.js";
 
+// Main application
 searchButton.addEventListener('click', (ev)=>{
 
     ev.preventDefault()
-    SearchMusic()
+
+    searchMusic()
 })
 
 

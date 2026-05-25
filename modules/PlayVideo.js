@@ -1,4 +1,5 @@
-export default function PlayVideo(videoId) {
+// Create a iframe on HTML page through videoID
+export default function playVideo(videoId) {
     const player = document.getElementById("player");
 
     player.innerHTML = `
