@@ -10,7 +10,6 @@ export default async function searchMusic() {
     
     try {
         const data = await dataYT(music)
-        console.log(data)
         const videoId = data.items[0].id.videoId;
         playVideo(videoId);
         musicList(data.items)
