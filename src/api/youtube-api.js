@@ -1,3 +1,4 @@
+//Using the YouTube Data API v3 
 export default async function dataYT(music){
     const apiKey = `part=snippet&type=video&maxResults=5&q=${encodeURIComponent(music)}&key=${prompt("Digite sua API KEY")}`
     const apiYT = `https://www.googleapis.com/youtube/v3/search?`
