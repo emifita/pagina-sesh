@@ -21,7 +21,7 @@ div{
     align-items: center;
 }
 
-a{
+#searchButton{
     text-decoration: none;
     cursor: pointer;
     background-color: white;
@@ -44,4 +44,15 @@ input{
 
 iframe{
     border-radius: 20px;
+}
+
+#musicList{
+    min-height: 140px;
+    min-width: 100%;
+}
+
+.music{
+    cursor: pointer;
+    margin: 3px;
+    list-style:decimal-leading-zero;
 }

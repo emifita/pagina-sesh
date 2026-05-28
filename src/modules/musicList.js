@@ -6,7 +6,7 @@ export default function musicList(dataList){
     
     //list first 5 videos results bellow the number 0 of the list 
     let newData = data.reduce((acum, element) => {
-        return acum + `<li><a id=${element.id.videoId} class="music list">
+        return acum + `<li class="music list"><a id=${element.id.videoId}>
         ${element.snippet.title}</a></li>
         `
     }, '');
