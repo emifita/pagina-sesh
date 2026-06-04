@@ -1,5 +1,3 @@
-import * as dotenv from "../../node_modules/dotenv"
-dotenv.config()
 
 //Using the YouTube Data API v3 
 export default async function dataYT(music){
