@@ -5,6 +5,7 @@ export default function clickVideo(){
     const clickButton = document.querySelectorAll(".music")
         clickButton.forEach((element)=>{
             element.addEventListener('click', (ev)=>{
+                
             ev.preventDefault()
 
             playVideo(ev.target.id)

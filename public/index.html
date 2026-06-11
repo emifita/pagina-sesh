@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/TeamSESH_Logo.jpg" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 <title>DeadBoy</title>
 </head>
 <body>
     <header class="header">
-        <img src="img/TeamSESH_Logo.jpg" alt="sesh logo" class="sesh-image">
-        <p class="sesh-name">SESH<br>MUSIC</p>
-        <nav></nav>
+        <h1 class="sesh-name">SESH<br>MUSIC</h1>
+        <img src="img/skealeton-sesh.jpg" alt="sesh logo" class="sesh-image">
+        <nav class="navbar">
+            <a href="#" class="home nav-element">HOME</a>
+            <a href="#" class="album nav-element">ALBUMS</a>
+            <a href="#" class="search-icon nav-element">🔍</a>
+        </nav>
     </header>
-    <div class="container">
-        <h1>Nome da musica:</h1>
+    <div class="container box-default">
+        <label for="musicInput">Nome da musica:</label>
         <input type="text" id="musicInput" placeholder="Digite a musica...">
-        <a href="" id="searchButton">SESH</a>
-        <div id="player"></div>
+        <button id="searchButton">SESH</button>
+        <div id="player" class="box-default"></div>
         <ul id="musicList"></ul>
     </div>
-    <footer class="footer"><div><p>Powered By Emifita ©</p></div></footer>
+    <footer class="footer"><div class="box-default"><p>Powered By Emifita ©</p></div></footer>
     <script src="app.js" type="module"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+//Funcionalidades a serem incluidas no projeto...
+
+-Menu de navegação entre paginas
+    |
+    Lupa de pesquisa
+    Icones das paginas (Home, Albuns, Curiosidades...)
+    Opção de mudar papel de parede da página
+-Albuns do Bones
+-Curiosidades do Bones
+-Musicas mais ouvidas
+-Fotos
+
+
+

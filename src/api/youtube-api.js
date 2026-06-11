@@ -1,4 +1,3 @@
-
 //Using the YouTube Data API v3 
 export default async function dataYT(music){
     const apiKey = process.env.YOUTUBE_API_KEY
@@ -8,7 +7,6 @@ export default async function dataYT(music){
     try {
             const response = await fetch(url);
             const data = await response.json();
-
             return data
         } catch (erro) {
             console.error("Erro:", erro);
