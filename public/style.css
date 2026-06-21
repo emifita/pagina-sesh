@@ -75,10 +75,6 @@ body {
 
 }
 
-iframe{
-    border-radius: 20px;
-}
-
 #musicList{
     min-height: 140px;
     min-width: 100%;
@@ -97,9 +93,17 @@ iframe{
 .navbar {
     justify-self: end;
     display: flex;
+    font-family: "Black Ops One", system-ui;
     gap: 30px;
 }
 
 .nav-element{
     text-decoration: none;
+}
+
+.video-content{
+    width:560px;
+    height: 315px;
+    border-radius: 20px;
+    border: 0px;
 }

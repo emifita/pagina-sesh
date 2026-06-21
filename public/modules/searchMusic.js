@@ -1,5 +1,5 @@
 import playVideo from './playVideo.js';
-import musicList from './MusicList.js';
+import musicList from './musicList.js';
 import clickVideo from './clickVideo.js';
 
 
