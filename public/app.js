@@ -1,5 +1,6 @@
 import searchMusic from "./modules/searchMusic.js";
 import changePlaceHolder from "./modules/changePlaceHolder.js";
+import loadingButton from "./modules/loadingButton.js";
 const searchButton = document.getElementById("searchButton") 
 let music = document.getElementById("musicInput");
 
@@ -7,9 +8,12 @@ let music = document.getElementById("musicInput");
 searchButton.addEventListener('click', (ev)=>{
     ev.preventDefault()
 
-    changePlaceHolder(music)
-    searchMusic(music)
-    music.value = ''
+    loadingButton(searchButton)
+    setTimeout(()=>{
+        changePlaceHolder(music)
+        searchMusic(music)
+        music.value = ''
+    },4000)
 })
 
 

@@ -17,16 +17,21 @@
         <nav class="navbar">
             <a href="#" class="home nav-element">HOME</a>
             <a href="#" class="album nav-element">ALBUMS</a>
-            <a href="#" class="search-icon nav-element">🔍</a>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquise...">
+                <a href="">
+                    <img src="img/loupe.png" alt="" class="search-image">
+                </a>
+            </div>
         </nav>
     </header>
-    <div class="container box-default">
+    <form class="container box-default">
         <label for="musicInput">Nome da musica:</label>
         <input type="text" id="musicInput" placeholder="Digite a musica...">
-        <button id="searchButton">SESH</button>
+        <button id="searchButton" type="submit">SESH</button>
         <div id="player" class="box-default"></div>
         <ul id="musicList"></ul>
-    </div>
+    </form>
     <footer class="footer"><div class="box-default"><p>Powered By Emifita ©</p></div></footer>
     <script src="app.js" type="module"></script>
 </body>
