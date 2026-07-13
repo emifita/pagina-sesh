@@ -1,8 +1,10 @@
 import searchMusic from "./modules/searchMusic.js";
 import changePlaceHolder from "./modules/changePlaceHolder.js";
 import loadingButton from "./modules/loadingButton.js";
+import watchTimer from "./modules/watchTimer.js";
 const searchButton = document.getElementById("searchButton") 
 let music = document.getElementById("musicInput");
+
 
 // Main application
 searchButton.addEventListener('click', (ev)=>{
@@ -15,6 +17,10 @@ searchButton.addEventListener('click', (ev)=>{
         music.value = ''
     },4000)
 })
+
+setInterval(()=>{
+        watchTimer()
+    }, 1000)
 
 
 

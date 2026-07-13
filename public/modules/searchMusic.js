@@ -17,6 +17,8 @@ export default async function searchMusic(music) {
             return
         }catch (erro) {
             console.error("Erro:", erro);
+            alert('Problema de requisição!')
+            return
         }
     }
     alert('Nenhuma musica digitada!')

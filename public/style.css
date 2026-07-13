@@ -162,3 +162,6 @@ body {
 .search-container:hover > .search-input{
     width: 150px;
 }
+.watch{
+    margin-left: 20px ;
+}
