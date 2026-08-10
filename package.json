@@ -1,19 +1,30 @@
 {
   "dependencies": {
+    "core-js": "^3.6.5",
     "cors": "^2.8.6",
+    "css-loader": "^3.6.0",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "regenerator-runtime": "^0.13.5",
+    "style-loader": "^1.2.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "file-loader": "^6.2.0",
+    "nodemon": "^3.1.14",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "name": "projeto-pagina",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./backend/src/server.js",
+    "wp": "webpack -w --config webpack.config.cjs"
   },
   "keywords": [],
   "author": "",

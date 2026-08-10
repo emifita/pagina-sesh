@@ -1,8 +1,8 @@
-import CreateTag from "./CreateTag.js";
+import CreateTag from "../utils/CreateTag";
 
 // Show other music options
 export default function musicList(dataList){
-    let docList = document.getElementById("musicList");
+    const docList = document.getElementById("musicList");
     docList.innerHTML = '';
 
     //list first 5 videos results bellow the number 0 of the list 
