@@ -1,9 +1,9 @@
-export default function loadingButton(btn){
-    const loader = document.querySelector('#player');
-    if(loader.classList.contains("loader")){
-        loader.classList.remove("loader")
+export default function loadingButton(tag){
+    if(tag.classList.contains("loader")){
+        tag.classList.remove("loader")
         return
     }
-    loader.classList.add('loader')
+    tag.replaceChildren()
+    tag.classList.add('loader')
 }
 

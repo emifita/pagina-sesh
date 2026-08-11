@@ -12,7 +12,7 @@ export async function handleSearch(input) {
         return alert("Nenhuma música digitada!");
     }
 
-    loadingButton(document.querySelector("#searchButton"));
+    loadingButton(document.querySelector("#player"));
 
     try {
 
@@ -35,7 +35,7 @@ export async function handleSearch(input) {
         alert(error.message);
 
     }finally{
-        loadingButton(document.querySelector("#searchButton"));
+        loadingButton(document.querySelector("#player"));
     }
 
 }

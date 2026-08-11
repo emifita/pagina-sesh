@@ -248,13 +248,13 @@ function clickVideo() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return loadingButton; });
-function loadingButton(btn) {
-  var loader = document.querySelector('#player');
-  if (loader.classList.contains("loader")) {
-    loader.classList.remove("loader");
+function loadingButton(tag) {
+  if (tag.classList.contains("loader")) {
+    tag.classList.remove("loader");
     return;
   }
-  loader.classList.add('loader');
+  tag.replaceChildren();
+  tag.classList.add('loader');
 }
 
 /***/ }),
@@ -362,7 +362,7 @@ function _handleSearch() {
           }
           return _context.a(2, alert("Nenhuma música digitada!"));
         case 1:
-          Object(_components_loadingButton_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#searchButton"));
+          Object(_components_loadingButton_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#player"));
           _context.p = 2;
           _context.n = 3;
           return Object(_services_music_service_js__WEBPACK_IMPORTED_MODULE_5__["searchMusic"])(input.value);
@@ -382,7 +382,7 @@ function _handleSearch() {
           alert(_t.message);
         case 5:
           _context.p = 5;
-          Object(_components_loadingButton_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#searchButton"));
+          Object(_components_loadingButton_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#player"));
           return _context.f(5);
         case 6:
           return _context.a(2);
@@ -553,7 +553,7 @@ exports.push([module.i, "@import url(https://fonts.gstatic.com);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Shadows+Into+Light&display=swap);"]);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n}\r\n\r\n.header{\r\n    display: grid;\r\n    grid-template-columns: 1fr auto 1fr;\r\n    align-items: center;\r\n    border-bottom: 1px solid #222;\r\n    height: 100px;\r\n    width: 100%;\r\n    background-color: black;\r\n    padding: 0 30px;\r\n}\r\n\r\n.sesh-name{\r\n    justify-self: start;\r\n    font-size: 100%;\r\n    line-height: 0.9;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    color: rgb(236, 245, 236)\r\n}\r\n\r\n.sesh-image {\r\n    justify-self: center;\r\n    height: 80px;\r\n    width: 80px;\r\n    object-fit: cover;\r\n}\r\n\r\n.container{\r\n    flex:1;\r\n}\r\n\r\n.box-default{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#searchButton{\r\n    text-decoration: none;\r\n    background: none;\r\n    border: none;\r\n    background-color: white;\r\n    font: inherit;\r\n    cursor:pointer;\r\n    color: black;\r\n    margin-top: 5px;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n}\r\n\r\n#musicInput{\r\n    color:black;\r\n    border: none;\r\n    outline: none;\r\n    appearance: none;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px;\r\n\r\n}\r\n\r\n#musicList{\r\n    min-height: 140px;\r\n    min-width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.music{\r\n    cursor: pointer;\r\n    margin: 3px;\r\n    list-style:decimal-leading-zero;\r\n}\r\n\r\n.navbar {\r\n    justify-self: end;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    gap: 50px;\r\n}\r\n\r\n.nav-element{\r\n    text-decoration: none;\r\n}\r\n\r\n.video-content{\r\n    width:560px;\r\n    height: 315px;\r\n    border-radius: 20px;\r\n    border: 0px;\r\n}\r\n\r\n.loader {\r\n    margin-top: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 4px solid #ddd;\r\n    border-top: 4px solid #3498db;\r\n    border-radius: 50%;\r\n    animation: girar 1s linear infinite;\r\n}\r\n@keyframes girar {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.search-image{\r\n    width: 30px;\r\n    height: 30px;\r\n    padding: 5px;\r\n    border-radius: 50%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.search-container{\r\n    background-color: white;\r\n    min-height: 40px;\r\n    min-width: 40px;\r\n    display: flex;\r\n    border-radius: 25px;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.search-input{\r\n    color: black;\r\n    border: none;\r\n    background: none;\r\n    text-decoration: none;\r\n    outline: 0;\r\n    padding-left: 10px;\r\n    transition: 0.4s;\r\n    width: 0;\r\n}\r\n\r\n.search-container:hover > .search-input{\r\n    width: 150px;\r\n}\r\n.watch{\r\n    margin-left: 20px ;\r\n}\r\n", ""]);
+exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n}\r\n\r\n.header{\r\n    display: grid;\r\n    grid-template-columns: 1fr auto 1fr;\r\n    align-items: center;\r\n    border-bottom: 1px solid #222;\r\n    height: 100px;\r\n    width: 100%;\r\n    background-color: black;\r\n    padding: 0 30px;\r\n}\r\n\r\n.sesh-name{\r\n    justify-self: start;\r\n    font-size: 100%;\r\n    line-height: 0.9;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    color: rgb(236, 245, 236)\r\n}\r\n\r\n.sesh-image {\r\n    justify-self: center;\r\n    height: 80px;\r\n    width: 80px;\r\n    object-fit: cover;\r\n}\r\n\r\n.container{\r\n    flex:1;\r\n}\r\n\r\n.box-default{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#searchButton{\r\n    text-decoration: none;\r\n    background: none;\r\n    border: none;\r\n    background-color: white;\r\n    font: inherit;\r\n    cursor:pointer;\r\n    color: black;\r\n    margin-top: 5px;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n}\r\n\r\n#musicInput{\r\n    color:black;\r\n    border: none;\r\n    outline: none;\r\n    appearance: none;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px;\r\n\r\n}\r\n\r\n#musicList{\r\n    min-height: 140px;\r\n    min-width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.music{\r\n    cursor: pointer;\r\n    margin: 3px;\r\n    list-style:decimal-leading-zero;\r\n}\r\n\r\n.navbar {\r\n    justify-self: end;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    gap: 50px;\r\n}\r\n\r\n.nav-element{\r\n    text-decoration: none;\r\n}\r\n\r\n.video-content{\r\n    width:560px;\r\n    height: 315px;\r\n    border-radius: 20px;\r\n    border: 0px;\r\n}\r\n\r\n.loader {\r\n    margin-top: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 4px solid #ddd;\r\n    border-top: 4px solid #3498db;\r\n    border-radius: 50%;\r\n    animation: girar 1s linear infinite;\r\n}\r\n@keyframes girar {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.search-container:hover > .search-input{\r\n    width: 150px;\r\n}\r\n.watch{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

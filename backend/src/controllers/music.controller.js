@@ -5,10 +5,8 @@ async function search(req, res){
     try{
 
         const music = req.query.music
-        console.log(music)
 
         const data = await musicService.search(music);
-
         res.json(data);
 
     }

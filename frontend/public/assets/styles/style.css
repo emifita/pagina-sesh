@@ -131,40 +131,11 @@ body {
     }
 }
 
-.search-image{
-    width: 30px;
-    height: 30px;
-    padding: 5px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.search-container{
-    background-color: white;
-    min-height: 40px;
-    min-width: 40px;
-    display: flex;
-    border-radius: 25px;
-    justify-content: center;
-    align-items: center;
-}
-
-.search-input{
-    color: black;
-    border: none;
-    background: none;
-    text-decoration: none;
-    outline: 0;
-    padding-left: 10px;
-    transition: 0.4s;
-    width: 0;
-}
-
 .search-container:hover > .search-input{
     width: 150px;
 }
 .watch{
-    margin-left: 20px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
