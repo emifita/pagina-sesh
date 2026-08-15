@@ -1,19 +1,22 @@
 import musicService from "../services/music.service.js"
+import saveHistory from "../services/history.service.js";
 
 async function search(req, res){
 
     try{
 
         const music = req.query.music
-
         const data = await musicService.search(music);
+
+        await saveHistory(req.query)
+
         res.json(data);
 
     }
     catch(error){
 
         res.status(500).json({
-            error: err.message
+            error: error.message
         });
         
     }

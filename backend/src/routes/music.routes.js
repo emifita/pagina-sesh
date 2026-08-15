@@ -3,6 +3,6 @@ import musicController from "../controllers/music.controller.js";
 
 const router = Router();
 
-router.get('/', musicController.search)
+router.get('/music', musicController.search)
 
 export default router;

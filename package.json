@@ -1,4 +1,7 @@
 {
+  "liveServer.settings.ignoreFiles": [
+    "**/backend/data/history.json"
+  ],
   "dependencies": {
     "core-js": "^3.6.5",
     "cors": "^2.8.6",
@@ -23,7 +26,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./backend/src/server.js",
+    "dev": "nodemon backend/src/server.js",
     "wp": "webpack -w --config webpack.config.cjs"
   },
   "keywords": [],

@@ -1,6 +1,6 @@
 export async function searchMusicApi(query) {
     const response = await fetch(
-        `http://localhost:3000/?music=${encodeURIComponent(query)}`
+        `http://localhost:3000/music?music=${encodeURIComponent(query)}`
     );
 
     if (!response.ok) {

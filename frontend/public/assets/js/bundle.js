@@ -194,7 +194,7 @@ function _searchMusicApi() {
       while (1) switch (_context.n) {
         case 0:
           _context.n = 1;
-          return fetch("http://localhost:3000/?music=".concat(encodeURIComponent(query)));
+          return fetch("http://localhost:3000/music?music=".concat(encodeURIComponent(query)));
         case 1:
           response = _context.v;
           if (response.ok) {
