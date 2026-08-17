@@ -1,5 +1,5 @@
 import musicService from "../services/music.service.js"
-import saveHistory from "../services/history.service.js";
+import saveHistory from "../services/saveHistory.service.js";
 
 async function search(req, res){
 

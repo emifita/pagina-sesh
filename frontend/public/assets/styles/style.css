@@ -139,3 +139,14 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.history-title{
+    cursor: pointer;
+}
+
+.history-list{
+    display:none
+}
+.show-history{
+    display: block;
+}

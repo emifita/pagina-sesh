@@ -1,4 +1,4 @@
-import loadingButton from "../components/loadingButton.js";
+import updateClassName from "../components/updateClassName.js";
 import changePlaceHolder from "../utils/changePlaceHolder.js";
 import playVideo from "../components/playVideo.js";
 import musicList from "../components/musicList.js";
@@ -12,7 +12,7 @@ export async function handleSearch(input) {
         return alert("Nenhuma música digitada!");
     }
 
-    loadingButton(document.querySelector("#player"));
+    updateClassName(document.querySelector("#player"), "loader");
 
     try {
 
@@ -35,7 +35,7 @@ export async function handleSearch(input) {
         alert(error.message);
 
     }finally{
-        loadingButton(document.querySelector("#player"));
+        updateClassName(document.querySelector("#player"), "loader");
     }
 
 }
