@@ -1,11 +1,11 @@
 import CreateTag from "../utils/CreateTag";
 
-// Show other music options
+// Rebuild the alternatives list from the latest search response.
 export default function musicList(dataList){
     const docList = document.getElementById("musicList");
     docList.innerHTML = '';
 
-    //list first 5 videos results bellow the number 0 of the list 
+    // Store each video ID on its link so clickVideo can play that selection.
     dataList.forEach((e)=>{
         let element = new CreateTag('li', 'music list')
 

@@ -1,4 +1,4 @@
-// Create a iframe on HTML page through videoID
+// Replace the current player contents with an autoplaying YouTube embed for this video.
 export default function playVideo(videoId) {
     const player = document.getElementById("player");
     player.innerHTML = ''

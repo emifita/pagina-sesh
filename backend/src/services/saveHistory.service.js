@@ -4,6 +4,7 @@ import getHistory from "./getHistory.service.js";
 export default async function saveHistory(query) {
     const dataHistory = await getHistory()
 
+    // Append the normalized query and rewrite the JSON file as formatted data.
     dataHistory.history.push(query);
 
     await fs.writeFile(

@@ -8,6 +8,7 @@ import { searchMusic } from "../services/music.service.js";
 
 export async function handleSearch(input) {
 
+    // Avoid an unnecessary request and give immediate feedback for blank input.
     if (!input.value.trim()) {
         return alert("Nenhuma música digitada!");
     }
@@ -16,6 +17,7 @@ export async function handleSearch(input) {
 
     try {
 
+        // Use the top match in the player and render the remaining options below it.
         const musics = await searchMusic(input.value);
 
         playVideo(musics[0].id.videoId);
@@ -35,6 +37,7 @@ export async function handleSearch(input) {
         alert(error.message);
 
     }finally{
+        // Clear the loading state even when the request or rendering fails.
         updateClassName(document.querySelector("#player"), "loader");
     }
 

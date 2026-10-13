@@ -6,18 +6,26 @@
     <link rel="icon" href="img/TeamSESH_Logo.jpg" type="image/png">
 <title>DeadBoy</title>
 </head>
-<body>
+<body class="intro-active">
+    <main class="home-intro" aria-label="Tela inicial">
+        <button class="home-intro__button" type="button" aria-label="Entrar no site SESH">
+            <H1>TEAM SESH DEADBOYS</H1>
+            <img src="img/TeamSESH_Logo.jpg" alt="SESH" class="home-intro__logo">
+            <p>Powered by Emifita</p>
+        </button>
+    </main>
     <header class="header">
         <h1 class="sesh-name">SESH<br>MUSIC</h1>
         <img src="img/skealeton-sesh.jpg" alt="sesh logo" class="sesh-image">
         <nav class="navbar">
-            <a href="#" class="home nav-element">HOME</a>
+            <a href="#" class="home nav-element" id="home-button">HOME</a>
             <a href="#" class="album nav-element">PESQUISAR</a>
-            <a href="#" class="album nav-element">
-                <p class="history-title">HISTORICO</p>
-                <ul class="history-list">
-                </ul>
-            </a>
+            <div class="history-menu">
+                <button class="history-title" type="button">
+                HISTÓRICO
+                </button>
+            <ul class="history-list"></ul>
+</div>
         </nav>
     </header>
     <div class="watch">

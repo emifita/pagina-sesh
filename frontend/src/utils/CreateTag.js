@@ -1,4 +1,5 @@
 export default class CreateTag {
+    // Centralize creation of DOM elements with optional initial attributes and text.
     constructor(tag, className, text, id) {
         this.tag = document.createElement(tag);
 
@@ -8,6 +9,7 @@ export default class CreateTag {
     }
 
     append(node) {
+        // Append a child to the wrapped DOM element.
         this.tag.appendChild(node);
     }
 
@@ -16,10 +18,12 @@ export default class CreateTag {
     }
 
     on(event, callback) {
+        // Register an event listener on the wrapped element.
         this.tag.addEventListener(event, callback);
     }
 
     get element() {
+        // Expose the native element for DOM APIs not wrapped by this helper.
         return this.tag;
     }
 }

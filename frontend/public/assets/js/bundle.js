@@ -96,12 +96,10 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return mainApp; });
-/* harmony import */ var _src_components_clickVideo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/components/clickVideo.js */ "./frontend/src/components/clickVideo.js");
-/* harmony import */ var _src_controllers_music_controller_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/controllers/music.controller.js */ "./frontend/src/controllers/music.controller.js");
-/* harmony import */ var _src_utils_watchTimer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/utils/watchTimer.js */ "./frontend/src/utils/watchTimer.js");
-/* harmony import */ var _src_components_historyList_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/components/historyList.js */ "./frontend/src/components/historyList.js");
-/* harmony import */ var _src_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./src/components/updateClassName.js */ "./frontend/src/components/updateClassName.js");
-
+/* harmony import */ var _src_controllers_music_controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/controllers/music.controller.js */ "./frontend/src/controllers/music.controller.js");
+/* harmony import */ var _src_utils_watchTimer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/utils/watchTimer.js */ "./frontend/src/utils/watchTimer.js");
+/* harmony import */ var _src_components_historyList_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/historyList.js */ "./frontend/src/components/historyList.js");
+/* harmony import */ var _src_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/components/updateClassName.js */ "./frontend/src/components/updateClassName.js");
 
 
 
@@ -110,17 +108,28 @@ var form = document.querySelector("form");
 var input = document.querySelector("#musicInput");
 var history = document.querySelector(".history-title");
 var historyListTag = document.querySelector(".history-list");
+var homeIntro = document.querySelector(".home-intro");
+var homeIntroButton = document.querySelector(".home-intro__button");
 function mainApp() {
+  homeIntroButton.addEventListener("click", function () {
+    homeIntro.classList.add("home-intro--leaving");
+    document.body.classList.remove("intro-active");
+    homeIntro.addEventListener("transitionend", function () {
+      return homeIntro.remove();
+    }, {
+      once: true
+    });
+  });
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    Object(_src_controllers_music_controller_js__WEBPACK_IMPORTED_MODULE_1__["handleSearch"])(input);
+    Object(_src_controllers_music_controller_js__WEBPACK_IMPORTED_MODULE_0__["handleSearch"])(input);
   });
   history.addEventListener("click", function (event) {
     event.preventDefault();
-    Object(_src_components_historyList_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
-    Object(_src_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_4__["default"])(historyListTag, "show-history");
+    Object(_src_components_historyList_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    Object(_src_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_3__["default"])(historyListTag, "show-history");
   });
-  setInterval(_src_utils_watchTimer_js__WEBPACK_IMPORTED_MODULE_2__["default"], 1000);
+  setInterval(_src_utils_watchTimer_js__WEBPACK_IMPORTED_MODULE_1__["default"], 1000);
 }
 
 /***/ }),
@@ -261,48 +270,124 @@ function clickVideo() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return historyList; });
-/* harmony import */ var _utils_CreateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/CreateTag */ "./frontend/src/utils/CreateTag.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorValues(e) { if (null != e) { var t = e["function" == typeof Symbol && Symbol.iterator || "@@iterator"], r = 0; if (t) return t.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) return { next: function next() { return e && r >= e.length && (e = void 0), { value: e && e[r++], done: !e }; } }; } throw new TypeError(_typeof(e) + " is not iterable"); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-
 function historyList() {
   return _historyList.apply(this, arguments);
 }
 function _historyList() {
-  _historyList = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-    var ul, response, history, i, tag, _t;
-    return _regenerator().w(function (_context) {
-      while (1) switch (_context.p = _context.n) {
+  _historyList = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+    var ul, response, history, _loop, i, _t2;
+    return _regenerator().w(function (_context3) {
+      while (1) switch (_context3.p = _context3.n) {
         case 0:
           ul = document.querySelector(".history-list");
-          _context.p = 1;
-          _context.n = 2;
+          _context3.p = 1;
+          _context3.n = 2;
           return fetch("http://localhost:3000/history");
         case 2:
-          response = _context.v;
-          _context.n = 3;
-          return response.json();
-        case 3:
-          history = _context.v;
-          if (history.length > 0) {
-            for (i = 0; i < history.length; i++) {
-              tag = new _utils_CreateTag__WEBPACK_IMPORTED_MODULE_0__["default"]("li", "history-item", history[i].music);
-              ul.appendChild(tag.element);
-            }
+          response = _context3.v;
+          if (response.ok) {
+            _context3.n = 3;
+            break;
           }
-          _context.n = 5;
-          break;
+          throw new Error("Não foi possível carregar o histórico.");
+        case 3:
+          _context3.n = 4;
+          return response.json();
         case 4:
-          _context.p = 4;
-          _t = _context.v;
-          console.log(_t);
-          alert(_t);
+          history = _context3.v;
+          ul.replaceChildren();
+          if (!(history.length > 0)) {
+            _context3.n = 7;
+            break;
+          }
+          _loop = /*#__PURE__*/_regenerator().m(function _loop(i) {
+            var tag, musicName, buttonRemove, trashImage;
+            return _regenerator().w(function (_context2) {
+              while (1) switch (_context2.n) {
+                case 0:
+                  tag = document.createElement("li");
+                  tag.classList.add("history-item");
+                  musicName = document.createElement("p");
+                  musicName.classList.add("history-item-name");
+                  musicName.innerText = history[i].music;
+                  buttonRemove = document.createElement("button");
+                  buttonRemove.type = "button";
+                  buttonRemove.setAttribute("aria-label", "Remover ".concat(history[i].music, " do hist\xF3rico"));
+                  buttonRemove.classList.add("history-remove-button");
+                  trashImage = document.createElement("img");
+                  trashImage.src = "/img/lixeira.jpg";
+                  trashImage.alt = "";
+                  trashImage.classList.add("trash-image");
+                  buttonRemove.appendChild(trashImage);
+                  buttonRemove.addEventListener("click", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+                    var removeResponse, _t;
+                    return _regenerator().w(function (_context) {
+                      while (1) switch (_context.p = _context.n) {
+                        case 0:
+                          _context.p = 0;
+                          _context.n = 1;
+                          return fetch("http://localhost:3000/history/".concat(i), {
+                            method: "DELETE"
+                          });
+                        case 1:
+                          removeResponse = _context.v;
+                          if (removeResponse.ok) {
+                            _context.n = 2;
+                            break;
+                          }
+                          throw new Error("Não foi possível remover a música do histórico.");
+                        case 2:
+                          _context.n = 3;
+                          return historyList();
+                        case 3:
+                          _context.n = 5;
+                          break;
+                        case 4:
+                          _context.p = 4;
+                          _t = _context.v;
+                          console.error(_t);
+                          alert(_t.message);
+                        case 5:
+                          return _context.a(2);
+                      }
+                    }, _callee, null, [[0, 4]]);
+                  })));
+                  tag.append(musicName, buttonRemove);
+                  ul.appendChild(tag);
+                case 1:
+                  return _context2.a(2);
+              }
+            }, _loop);
+          });
+          i = 0;
         case 5:
-          return _context.a(2);
+          if (!(i < history.length)) {
+            _context3.n = 7;
+            break;
+          }
+          return _context3.d(_regeneratorValues(_loop(i)), 6);
+        case 6:
+          i++;
+          _context3.n = 5;
+          break;
+        case 7:
+          _context3.n = 9;
+          break;
+        case 8:
+          _context3.p = 8;
+          _t2 = _context3.v;
+          console.error(_t2);
+          alert(_t2.message);
+        case 9:
+          return _context3.a(2);
       }
-    }, _callee, null, [[1, 4]]);
+    }, _callee2, null, [[1, 8]]);
   }));
   return _historyList.apply(this, arguments);
 }
@@ -624,7 +709,7 @@ exports.push([module.i, "@import url(https://fonts.gstatic.com);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Shadows+Into+Light&display=swap);"]);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n}\r\n\r\n.header{\r\n    display: grid;\r\n    grid-template-columns: 1fr auto 1fr;\r\n    align-items: center;\r\n    border-bottom: 1px solid #222;\r\n    height: 100px;\r\n    width: 100%;\r\n    background-color: black;\r\n    padding: 0 30px;\r\n}\r\n\r\n.sesh-name{\r\n    justify-self: start;\r\n    font-size: 100%;\r\n    line-height: 0.9;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    color: rgb(236, 245, 236)\r\n}\r\n\r\n.sesh-image {\r\n    justify-self: center;\r\n    height: 80px;\r\n    width: 80px;\r\n    object-fit: cover;\r\n}\r\n\r\n.container{\r\n    flex:1;\r\n}\r\n\r\n.box-default{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#searchButton{\r\n    text-decoration: none;\r\n    background: none;\r\n    border: none;\r\n    background-color: white;\r\n    font: inherit;\r\n    cursor:pointer;\r\n    color: black;\r\n    margin-top: 5px;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n}\r\n\r\n#musicInput{\r\n    color:black;\r\n    border: none;\r\n    outline: none;\r\n    appearance: none;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px;\r\n\r\n}\r\n\r\n#musicList{\r\n    min-height: 140px;\r\n    min-width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.music{\r\n    cursor: pointer;\r\n    margin: 3px;\r\n    list-style:decimal-leading-zero;\r\n}\r\n\r\n.navbar {\r\n    justify-self: end;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    gap: 50px;\r\n}\r\n\r\n.nav-element{\r\n    text-decoration: none;\r\n}\r\n\r\n.video-content{\r\n    width:560px;\r\n    height: 315px;\r\n    border-radius: 20px;\r\n    border: 0px;\r\n}\r\n\r\n.loader {\r\n    margin-top: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 4px solid #ddd;\r\n    border-top: 4px solid #3498db;\r\n    border-radius: 50%;\r\n    animation: girar 1s linear infinite;\r\n}\r\n@keyframes girar {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.search-container:hover > .search-input{\r\n    width: 150px;\r\n}\r\n.watch{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.history-title{\r\n    cursor: pointer;\r\n}\r\n\r\n.history-list{\r\n    display:none\r\n}\r\n.show-history{\r\n    display: block;\r\n}\r\n", ""]);
+exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n}\r\n\r\nbody.intro-active {\r\n    overflow: hidden;\r\n    background: #000;\r\n}\r\n\r\n.home-intro {\r\n    position: fixed;\r\n    inset: 0;\r\n    z-index: 1000;\r\n    display: grid;\r\n    place-items: center;\r\n    background: #000;\r\n    opacity: 1;\r\n    transition: opacity 800ms ease;\r\n}\r\n\r\n.home-intro--leaving {\r\n    opacity: 0;\r\n    pointer-events: none;\r\n}\r\n\r\n.home-intro__button {\r\n    display: grid;\r\n    place-items: center;\r\n    width: min(72vw, 620px);\r\n    padding: 0;\r\n    border: 0;\r\n    background: transparent;\r\n    cursor: pointer;\r\n    animation: sesh-emerge 1800ms cubic-bezier(.2,.75,.25,1) both;\r\n}\r\n\r\n.home-intro__button:focus-visible {\r\n    outline: 2px solid white;\r\n    outline-offset: 14px;\r\n}\r\n\r\n.home-intro__logo {\r\n    display: block;\r\n    width: 100%;\r\n    height: auto;\r\n}\r\n\r\n@keyframes sesh-emerge {\r\n    from { opacity: 0; transform: scale(.35); }\r\n    to { opacity: 1; transform: scale(1); }\r\n}\r\n\r\n@media (prefers-reduced-motion: reduce) {\r\n    .home-intro__button { animation-duration: 1ms; }\r\n    .home-intro { transition-duration: 1ms; }\r\n}\r\n\r\n.header{\r\n    display: grid;\r\n    grid-template-columns: 1fr auto 1fr;\r\n    align-items: center;\r\n    border-bottom: 1px solid #222;\r\n    height: 100px;\r\n    width: 100%;\r\n    background-color: black;\r\n    padding: 0 30px;\r\n}\r\n\r\n.sesh-name{\r\n    justify-self: start;\r\n    font-size: 100%;\r\n    line-height: 0.9;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    color: rgb(236, 245, 236)\r\n}\r\n\r\n.sesh-image {\r\n    justify-self: center;\r\n    height: 80px;\r\n    width: 80px;\r\n    object-fit: cover;\r\n}\r\n\r\n.container{\r\n    flex:1;\r\n}\r\n\r\n.box-default{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#searchButton{\r\n    text-decoration: none;\r\n    background: none;\r\n    border: none;\r\n    background-color: white;\r\n    font: inherit;\r\n    cursor:pointer;\r\n    color: black;\r\n    margin-top: 5px;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n}\r\n\r\n#musicInput{\r\n    color:black;\r\n    border: none;\r\n    outline: none;\r\n    appearance: none;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px;\r\n\r\n}\r\n\r\n#musicList{\r\n    min-height: 140px;\r\n    min-width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.music{\r\n    cursor: pointer;\r\n    margin: 3px;\r\n    list-style:decimal-leading-zero;\r\n}\r\n\r\n.navbar {\r\n    justify-self: end;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    gap: 50px;\r\n}\r\n\r\n.nav-element{\r\n    text-decoration: none;\r\n}\r\n\r\n.video-content{\r\n    width:560px;\r\n    height: 315px;\r\n    border-radius: 20px;\r\n    border: 0px;\r\n}\r\n\r\n.loader {\r\n    margin-top: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 4px solid #ddd;\r\n    border-top: 4px solid #3498db;\r\n    border-radius: 50%;\r\n    animation: girar 1s linear infinite;\r\n}\r\n@keyframes girar {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.search-container:hover > .search-input{\r\n    width: 150px;\r\n}\r\n.watch{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.history-menu {\r\n    position: relative;\r\n}\r\n\r\n.history-title {\r\n    cursor: pointer;\r\n    border: 0;\r\n    background: transparent;\r\n    font: inherit;\r\n    color: inherit;\r\n}\r\n\r\n.history-list {\r\n    position: absolute;\r\n    top: calc(100% + 12px);\r\n    right: 0;\r\n    z-index: 10;\r\n\r\n    display: none;\r\n    flex-direction: column;\r\n    gap: 8px;\r\n\r\n    width: 260px;\r\n    max-height: 320px;\r\n    overflow-y: auto;\r\n\r\n    padding: 16px;\r\n    border: 1px solid #333;\r\n    border-radius: 8px;\r\n    background-color: #111;\r\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);\r\n    list-style: none;\r\n}\r\n\r\n.history-list.show-history {\r\n    display: flex;\r\n}\r\n\r\n.history-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    min-height: 36px;\n    padding-bottom: 8px;\n    border-bottom: 1px solid #333;\n    font-size: 0.85rem;\n}\n\n.history-item-name {\n    min-width: 0;\n    margin: 0;\n    overflow-wrap: anywhere;\n}\n\n.trash-image{\n    display: block;\n    width: 16px;\n    height: 18px;\n    object-fit: contain;\n}\n\n.history-remove-button{\n    display: grid;\n    flex: 0 0 28px;\n    place-items: center;\n    width: 28px;\n    height: 28px;\n    padding: 0;\n    border: 0;\n    border-radius: 4px;\n    background: transparent;\n    cursor: pointer;\n}\n\n.history-remove-button:hover,\n.history-remove-button:focus-visible {\n    background: #333;\n    outline: none;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

@@ -8,6 +8,7 @@ async function search(req, res){
         const music = req.query.music
         const data = await musicService.search(music);
 
+        // Record successful search terms alongside returning the provider response.
         await saveHistory(req.query)
 
         res.json(data);
