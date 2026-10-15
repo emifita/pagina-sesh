@@ -34,7 +34,7 @@ module.exports = {
             options: {
                 name: '[name].[contenthash:8].[ext]',
                 outputPath: '../img',
-                publicPath: 'assets/img',
+                publicPath: '/assets/img',
                 esModule: false
             }
         }

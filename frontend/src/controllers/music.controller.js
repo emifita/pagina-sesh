@@ -1,4 +1,4 @@
-import updateClassName from "../components/updateClassName.js";
+import updateClassName from "../utils/updateClassName.js";
 import changePlaceHolder from "../utils/changePlaceHolder.js";
 import playVideo from "../components/playVideo.js";
 import musicList from "../components/musicList.js";

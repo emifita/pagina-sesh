@@ -1,7 +1,7 @@
 import { handleSearch } from "./src/controllers/music.controller.js";
 import watchTimer from "./src/utils/watchTimer.js";
 import historyList from "./src/components/historyList.js";
-import updateClassName from "./src/components/updateClassName.js";
+import updateClassName from "./src/utils/updateClassName.js";
 
 const form = document.querySelector("form");
 const input = document.querySelector("#musicInput");
@@ -13,11 +13,13 @@ const homeIntroButton = document.querySelector(".home-intro__button")
 export default function mainApp() {
 
     // Dismiss the welcome screen after its exit animation finishes.
-    homeIntroButton.addEventListener("click", () => {
+    if(homeIntro){
+        homeIntroButton.addEventListener("click", () => {
         homeIntro.classList.add("home-intro--leaving")
         document.body.classList.remove("intro-active")
         homeIntro.addEventListener("transitionend", () => homeIntro.remove(), { once: true })
     })
+    }
 
     // Keep form submission in the page so search results can update the player in place.
     form.addEventListener("submit", (event) => {

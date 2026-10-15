@@ -45,6 +45,13 @@ export default async function historyList(){
 
             }
         }
+        else{
+            const tag = document.createElement("li")
+                tag.classList.add("empty-history")
+                tag.innerText = "Histórico vazio!"
+        
+            ul.appendChild(tag)
+        }
 
     }catch(error){
         console.error(error)

@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_controllers_music_controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/controllers/music.controller.js */ "./frontend/src/controllers/music.controller.js");
 /* harmony import */ var _src_utils_watchTimer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/utils/watchTimer.js */ "./frontend/src/utils/watchTimer.js");
 /* harmony import */ var _src_components_historyList_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/historyList.js */ "./frontend/src/components/historyList.js");
-/* harmony import */ var _src_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/components/updateClassName.js */ "./frontend/src/components/updateClassName.js");
+/* harmony import */ var _src_utils_updateClassName_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/utils/updateClassName.js */ "./frontend/src/utils/updateClassName.js");
 
 
 
@@ -111,24 +111,33 @@ var historyListTag = document.querySelector(".history-list");
 var homeIntro = document.querySelector(".home-intro");
 var homeIntroButton = document.querySelector(".home-intro__button");
 function mainApp() {
-  homeIntroButton.addEventListener("click", function () {
-    homeIntro.classList.add("home-intro--leaving");
-    document.body.classList.remove("intro-active");
-    homeIntro.addEventListener("transitionend", function () {
-      return homeIntro.remove();
-    }, {
-      once: true
+  // Dismiss the welcome screen after its exit animation finishes.
+  if (homeIntro) {
+    homeIntroButton.addEventListener("click", function () {
+      homeIntro.classList.add("home-intro--leaving");
+      document.body.classList.remove("intro-active");
+      homeIntro.addEventListener("transitionend", function () {
+        return homeIntro.remove();
+      }, {
+        once: true
+      });
     });
-  });
+  }
+
+  // Keep form submission in the page so search results can update the player in place.
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     Object(_src_controllers_music_controller_js__WEBPACK_IMPORTED_MODULE_0__["handleSearch"])(input);
   });
+
+  // Load the latest saved searches whenever the history heading is opened.
   history.addEventListener("click", function (event) {
     event.preventDefault();
     Object(_src_components_historyList_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
-    Object(_src_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_3__["default"])(historyListTag, "show-history");
+    Object(_src_utils_updateClassName_js__WEBPACK_IMPORTED_MODULE_3__["default"])(historyListTag, "show-history");
   });
+
+  // Refresh the visible clock once per second.
   setInterval(_src_utils_watchTimer_js__WEBPACK_IMPORTED_MODULE_1__["default"], 1000);
 }
 
@@ -148,6 +157,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _public_assets_styles_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_public_assets_styles_style_css__WEBPACK_IMPORTED_MODULE_1__);
 
 
+// Start the interface after the bundled entry point has loaded its styles and modules.
 Object(_app__WEBPACK_IMPORTED_MODULE_0__["default"])();
 
 /***/ }),
@@ -188,7 +198,7 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "assets/img/bones-background.20e1a10f.jpg";
+module.exports = "/assets/img/bones-background.20e1a10f.jpg";
 
 /***/ }),
 
@@ -247,11 +257,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _playVideo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./playVideo.js */ "./frontend/src/components/playVideo.js");
 
 
-//switch video by click on a music title in music list  
+// Attach selection handlers after each search list is rendered.
 function clickVideo() {
   var clickButton = document.querySelectorAll(".music");
   clickButton.forEach(function (element) {
     element.addEventListener('click', function (ev) {
+      // Prevent link navigation and replace the player with the selected video.
       ev.preventDefault();
       Object(_playVideo_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ev.target.id);
     });
@@ -281,7 +292,7 @@ function historyList() {
 }
 function _historyList() {
   _historyList = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-    var ul, response, history, _loop, i, _t2;
+    var ul, response, history, _loop, i, tag, _t2;
     return _regenerator().w(function (_context3) {
       while (1) switch (_context3.p = _context3.n) {
         case 0:
@@ -303,7 +314,7 @@ function _historyList() {
           history = _context3.v;
           ul.replaceChildren();
           if (!(history.length > 0)) {
-            _context3.n = 7;
+            _context3.n = 8;
             break;
           }
           _loop = /*#__PURE__*/_regenerator().m(function _loop(i) {
@@ -380,14 +391,22 @@ function _historyList() {
           _context3.n = 9;
           break;
         case 8:
-          _context3.p = 8;
+          tag = document.createElement("li");
+          tag.classList.add("empty-history");
+          tag.innerText = "Histórico vazio!";
+          ul.appendChild(tag);
+        case 9:
+          _context3.n = 11;
+          break;
+        case 10:
+          _context3.p = 10;
           _t2 = _context3.v;
           console.error(_t2);
           alert(_t2.message);
-        case 9:
+        case 11:
           return _context3.a(2);
       }
-    }, _callee2, null, [[1, 8]]);
+    }, _callee2, null, [[1, 10]]);
   }));
   return _historyList.apply(this, arguments);
 }
@@ -407,12 +426,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_CreateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/CreateTag */ "./frontend/src/utils/CreateTag.js");
 
 
-// Show other music options
+// Rebuild the alternatives list from the latest search response.
 function musicList(dataList) {
   var docList = document.getElementById("musicList");
   docList.innerHTML = '';
 
-  //list first 5 videos results bellow the number 0 of the list 
+  // Store each video ID on its link so clickVideo can play that selection.
   dataList.forEach(function (e) {
     var element = new _utils_CreateTag__WEBPACK_IMPORTED_MODULE_0__["default"]('li', 'music list');
     var titleLink = new _utils_CreateTag__WEBPACK_IMPORTED_MODULE_0__["default"]('a', 'music-list-item', e.snippet.title, e.id.videoId);
@@ -433,7 +452,7 @@ function musicList(dataList) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return playVideo; });
-// Create a iframe on HTML page through videoID
+// Replace the current player contents with an autoplaying YouTube embed for this video.
 function playVideo(videoId) {
   var player = document.getElementById("player");
   player.innerHTML = '';
@@ -441,38 +460,6 @@ function playVideo(videoId) {
   iframeElement.src = "https://www.youtube.com/embed/".concat(videoId, "?autoplay=1");
   iframeElement.classList.add('video-content');
   player.appendChild(iframeElement);
-
-  /* player.innerHTML = `
-      <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1"
-      frameborder="0"
-      allow="autoplay"
-      allowfullscreen>
-      </iframe>
-  ` */
-}
-
-/***/ }),
-
-/***/ "./frontend/src/components/updateClassName.js":
-/*!****************************************************!*\
-  !*** ./frontend/src/components/updateClassName.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return updateClassName; });
-function updateClassName(tag, className) {
-  if (tag.classList.contains(className)) {
-    tag.classList.remove(className);
-    return;
-  }
-  tag.replaceChildren();
-  tag.classList.add(className);
 }
 
 /***/ }),
@@ -487,7 +474,7 @@ function updateClassName(tag, className) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleSearch", function() { return handleSearch; });
-/* harmony import */ var _components_updateClassName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/updateClassName.js */ "./frontend/src/components/updateClassName.js");
+/* harmony import */ var _utils_updateClassName_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/updateClassName.js */ "./frontend/src/utils/updateClassName.js");
 /* harmony import */ var _utils_changePlaceHolder_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/changePlaceHolder.js */ "./frontend/src/utils/changePlaceHolder.js");
 /* harmony import */ var _components_playVideo_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/playVideo.js */ "./frontend/src/components/playVideo.js");
 /* harmony import */ var _components_musicList_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/musicList.js */ "./frontend/src/components/musicList.js");
@@ -518,7 +505,7 @@ function _handleSearch() {
           }
           return _context.a(2, alert("Nenhuma música digitada!"));
         case 1:
-          Object(_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#player"), "loader");
+          Object(_utils_updateClassName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#player"), "loader");
           _context.p = 2;
           _context.n = 3;
           return Object(_services_music_service_js__WEBPACK_IMPORTED_MODULE_5__["searchMusic"])(input.value);
@@ -538,7 +525,8 @@ function _handleSearch() {
           alert(_t.message);
         case 5:
           _context.p = 5;
-          Object(_components_updateClassName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#player"), "loader");
+          // Clear the loading state even when the request or rendering fails.
+          Object(_utils_updateClassName_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelector("#player"), "loader");
           return _context.f(5);
         case 6:
           return _context.a(2);
@@ -617,6 +605,7 @@ function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), 
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var CreateTag = /*#__PURE__*/function () {
+  // Centralize creation of DOM elements with optional initial attributes and text.
   function CreateTag(tag, className, text, id) {
     _classCallCheck(this, CreateTag);
     this.tag = document.createElement(tag);
@@ -627,6 +616,7 @@ var CreateTag = /*#__PURE__*/function () {
   return _createClass(CreateTag, [{
     key: "append",
     value: function append(node) {
+      // Append a child to the wrapped DOM element.
       this.tag.appendChild(node);
     }
   }, {
@@ -637,11 +627,13 @@ var CreateTag = /*#__PURE__*/function () {
   }, {
     key: "on",
     value: function on(event, callback) {
+      // Register an event listener on the wrapped element.
       this.tag.addEventListener(event, callback);
     }
   }, {
     key: "element",
     get: function get() {
+      // Expose the native element for DOM APIs not wrapped by this helper.
       return this.tag;
     }
   }]);
@@ -661,6 +653,7 @@ var CreateTag = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return changePlaceHolder; });
 function changePlaceHolder(input) {
+  // Mark empty input for correction; otherwise restore the normal input appearance.
   if (input.value.trim() === "") {
     input.value = "";
     input.placeholder = "Nenhuma música digitada";
@@ -669,6 +662,28 @@ function changePlaceHolder(input) {
   }
   input.classList.remove("input-error");
   input.placeholder = "Digite uma música";
+}
+
+/***/ }),
+
+/***/ "./frontend/src/utils/updateClassName.js":
+/*!***********************************************!*\
+  !*** ./frontend/src/utils/updateClassName.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return updateClassName; });
+function updateClassName(tag, className) {
+  // Toggle the state class; entering it also clears any previous player content.
+  if (tag.classList.contains(className)) {
+    tag.classList.remove(className);
+    return;
+  }
+  tag.replaceChildren();
+  tag.classList.add(className);
 }
 
 /***/ }),
@@ -684,6 +699,7 @@ function changePlaceHolder(input) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return watchTimer; });
 function watchTimer() {
+  // Use the browser's locale formatting so the clock follows the user's local time settings.
   var timer = document.querySelector('.timer');
   var date = new Date();
   var hours = date.toLocaleTimeString();
@@ -709,7 +725,7 @@ exports.push([module.i, "@import url(https://fonts.gstatic.com);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Shadows+Into+Light&display=swap);"]);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n}\r\n\r\nbody.intro-active {\r\n    overflow: hidden;\r\n    background: #000;\r\n}\r\n\r\n.home-intro {\r\n    position: fixed;\r\n    inset: 0;\r\n    z-index: 1000;\r\n    display: grid;\r\n    place-items: center;\r\n    background: #000;\r\n    opacity: 1;\r\n    transition: opacity 800ms ease;\r\n}\r\n\r\n.home-intro--leaving {\r\n    opacity: 0;\r\n    pointer-events: none;\r\n}\r\n\r\n.home-intro__button {\r\n    display: grid;\r\n    place-items: center;\r\n    width: min(72vw, 620px);\r\n    padding: 0;\r\n    border: 0;\r\n    background: transparent;\r\n    cursor: pointer;\r\n    animation: sesh-emerge 1800ms cubic-bezier(.2,.75,.25,1) both;\r\n}\r\n\r\n.home-intro__button:focus-visible {\r\n    outline: 2px solid white;\r\n    outline-offset: 14px;\r\n}\r\n\r\n.home-intro__logo {\r\n    display: block;\r\n    width: 100%;\r\n    height: auto;\r\n}\r\n\r\n@keyframes sesh-emerge {\r\n    from { opacity: 0; transform: scale(.35); }\r\n    to { opacity: 1; transform: scale(1); }\r\n}\r\n\r\n@media (prefers-reduced-motion: reduce) {\r\n    .home-intro__button { animation-duration: 1ms; }\r\n    .home-intro { transition-duration: 1ms; }\r\n}\r\n\r\n.header{\r\n    display: grid;\r\n    grid-template-columns: 1fr auto 1fr;\r\n    align-items: center;\r\n    border-bottom: 1px solid #222;\r\n    height: 100px;\r\n    width: 100%;\r\n    background-color: black;\r\n    padding: 0 30px;\r\n}\r\n\r\n.sesh-name{\r\n    justify-self: start;\r\n    font-size: 100%;\r\n    line-height: 0.9;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    color: rgb(236, 245, 236)\r\n}\r\n\r\n.sesh-image {\r\n    justify-self: center;\r\n    height: 80px;\r\n    width: 80px;\r\n    object-fit: cover;\r\n}\r\n\r\n.container{\r\n    flex:1;\r\n}\r\n\r\n.box-default{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#searchButton{\r\n    text-decoration: none;\r\n    background: none;\r\n    border: none;\r\n    background-color: white;\r\n    font: inherit;\r\n    cursor:pointer;\r\n    color: black;\r\n    margin-top: 5px;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n}\r\n\r\n#musicInput{\r\n    color:black;\r\n    border: none;\r\n    outline: none;\r\n    appearance: none;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px;\r\n\r\n}\r\n\r\n#musicList{\r\n    min-height: 140px;\r\n    min-width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.music{\r\n    cursor: pointer;\r\n    margin: 3px;\r\n    list-style:decimal-leading-zero;\r\n}\r\n\r\n.navbar {\r\n    justify-self: end;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    gap: 50px;\r\n}\r\n\r\n.nav-element{\r\n    text-decoration: none;\r\n}\r\n\r\n.video-content{\r\n    width:560px;\r\n    height: 315px;\r\n    border-radius: 20px;\r\n    border: 0px;\r\n}\r\n\r\n.loader {\r\n    margin-top: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 4px solid #ddd;\r\n    border-top: 4px solid #3498db;\r\n    border-radius: 50%;\r\n    animation: girar 1s linear infinite;\r\n}\r\n@keyframes girar {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.search-container:hover > .search-input{\r\n    width: 150px;\r\n}\r\n.watch{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.history-menu {\r\n    position: relative;\r\n}\r\n\r\n.history-title {\r\n    cursor: pointer;\r\n    border: 0;\r\n    background: transparent;\r\n    font: inherit;\r\n    color: inherit;\r\n}\r\n\r\n.history-list {\r\n    position: absolute;\r\n    top: calc(100% + 12px);\r\n    right: 0;\r\n    z-index: 10;\r\n\r\n    display: none;\r\n    flex-direction: column;\r\n    gap: 8px;\r\n\r\n    width: 260px;\r\n    max-height: 320px;\r\n    overflow-y: auto;\r\n\r\n    padding: 16px;\r\n    border: 1px solid #333;\r\n    border-radius: 8px;\r\n    background-color: #111;\r\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);\r\n    list-style: none;\r\n}\r\n\r\n.history-list.show-history {\r\n    display: flex;\r\n}\r\n\r\n.history-item {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 12px;\n    min-height: 36px;\n    padding-bottom: 8px;\n    border-bottom: 1px solid #333;\n    font-size: 0.85rem;\n}\n\n.history-item-name {\n    min-width: 0;\n    margin: 0;\n    overflow-wrap: anywhere;\n}\n\n.trash-image{\n    display: block;\n    width: 16px;\n    height: 18px;\n    object-fit: contain;\n}\n\n.history-remove-button{\n    display: grid;\n    flex: 0 0 28px;\n    place-items: center;\n    width: 28px;\n    height: 28px;\n    padding: 0;\n    border: 0;\n    border-radius: 4px;\n    background: transparent;\n    cursor: pointer;\n}\n\n.history-remove-button:hover,\n.history-remove-button:focus-visible {\n    background: #333;\n    outline: none;\n}\n", ""]);
+exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    color: white;\r\n}\r\n\r\nbody {\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: flex-start;\r\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n}\r\n\r\nbody.intro-active {\r\n    overflow: hidden;\r\n    background: #000;\r\n}\r\n\r\n.home-intro {\r\n    position: fixed;\r\n    inset: 0;\r\n    z-index: 1000;\r\n    display: grid;\r\n    place-items: center;\r\n    background: #000;\r\n    opacity: 1;\r\n    transition: opacity 800ms ease;\r\n}\r\n\r\n.home-intro--leaving {\r\n    opacity: 0;\r\n    pointer-events: none;\r\n}\r\n\r\n.home-intro__button {\r\n    display: grid;\r\n    place-items: center;\r\n    width: min(72vw, 620px);\r\n    padding: 0;\r\n    border: 0;\r\n    background: transparent;\r\n    cursor: pointer;\r\n    animation: sesh-emerge 1800ms cubic-bezier(.2,.75,.25,1) both;\r\n}\r\n\r\n.home-intro__button:focus-visible {\r\n    outline: 2px solid white;\r\n    outline-offset: 14px;\r\n}\r\n\r\n.home-intro__logo {\r\n    display: block;\r\n    width: 100%;\r\n    height: auto;\r\n}\r\n\r\n@keyframes sesh-emerge {\r\n    from { opacity: 0; transform: scale(.35); }\r\n    to { opacity: 1; transform: scale(1); }\r\n}\r\n\r\n@media (prefers-reduced-motion: reduce) {\r\n    .home-intro__button { animation-duration: 1ms; }\r\n    .home-intro { transition-duration: 1ms; }\r\n}\r\n\r\n.header{\r\n    display: grid;\r\n    grid-template-columns: 1fr auto 1fr;\r\n    align-items: center;\r\n    border-bottom: 1px solid #222;\r\n    height: 100px;\r\n    width: 100%;\r\n    background-color: black;\r\n    padding: 0 30px;\r\n}\r\n\r\n.sesh-name{\r\n    justify-self: start;\r\n    font-size: 100%;\r\n    line-height: 0.9;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    color: rgb(236, 245, 236)\r\n}\r\n\r\n.sesh-image {\r\n    justify-self: center;\r\n    height: 80px;\r\n    width: 80px;\r\n    object-fit: cover;\r\n}\r\n\r\n.container{\r\n    flex:1;\r\n}\r\n\r\n.box-default{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#searchButton{\r\n    text-decoration: none;\r\n    background: none;\r\n    border: none;\r\n    background-color: white;\r\n    font: inherit;\r\n    cursor:pointer;\r\n    color: black;\r\n    margin-top: 5px;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n}\r\n\r\n#musicInput{\r\n    color:black;\r\n    border: none;\r\n    outline: none;\r\n    appearance: none;\r\n    border-radius: 5px;\r\n    text-align: center;\r\n    padding: 5px;\r\n\r\n}\r\n\r\n#musicList{\r\n    min-height: 140px;\r\n    min-width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.music{\r\n    cursor: pointer;\r\n    margin: 3px;\r\n    list-style:decimal-leading-zero;\r\n}\r\n\r\n.navbar {\r\n    justify-self: end;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-family: \"Black Ops One\", system-ui;\r\n    gap: 50px;\r\n}\r\n\r\n.nav-element{\r\n    text-decoration: none;\r\n}\r\n\r\n.video-content{\r\n    width:560px;\r\n    height: 315px;\r\n    border-radius: 20px;\r\n    border: 0px;\r\n}\r\n\r\n.loader {\r\n    margin-top: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 4px solid #ddd;\r\n    border-top: 4px solid #3498db;\r\n    border-radius: 50%;\r\n    animation: girar 1s linear infinite;\r\n}\r\n@keyframes girar {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.search-container:hover > .search-input{\r\n    width: 150px;\r\n}\r\n.watch{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.history-menu {\r\n    position: relative;\r\n}\r\n\r\n.history-title {\r\n    cursor: pointer;\r\n    border: 0;\r\n    background: transparent;\r\n    font: inherit;\r\n    color: inherit;\r\n}\r\n\r\n.history-list {\r\n    position: absolute;\r\n    top: calc(100% + 12px);\r\n    right: 0;\r\n    z-index: 10;\r\n\r\n    display: none;\r\n    flex-direction: column;\r\n    gap: 8px;\r\n\r\n    width: 260px;\r\n    max-height: 320px;\r\n    overflow-y: auto;\r\n\r\n    padding: 16px;\r\n    border: 1px solid #333;\r\n    border-radius: 8px;\r\n    background-color: #111;\r\n    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);\r\n    list-style: none;\r\n}\r\n\r\n.history-list.show-history {\r\n    display: flex;\r\n}\r\n\r\n.history-item {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    gap: 12px;\r\n    min-height: 36px;\r\n    padding-bottom: 8px;\r\n    border-bottom: 1px solid #333;\r\n    font-size: 0.85rem;\r\n}\r\n\r\n.history-item-name {\r\n    min-width: 0;\r\n    margin: 0;\r\n    overflow-wrap: anywhere;\r\n}\r\n\r\n.trash-image{\r\n    display: block;\r\n    width: 16px;\r\n    height: 18px;\r\n    object-fit: contain;\r\n}\r\n\r\n.history-remove-button{\r\n    display: grid;\r\n    flex: 0 0 28px;\r\n    place-items: center;\r\n    width: 28px;\r\n    height: 28px;\r\n    padding: 0;\r\n    border: 0;\r\n    border-radius: 4px;\r\n    background: transparent;\r\n    cursor: pointer;\r\n}\r\n\r\n.history-remove-button:hover,\r\n.history-remove-button:focus-visible {\r\n    background: #333;\r\n    outline: none;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
